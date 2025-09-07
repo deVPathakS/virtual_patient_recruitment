@@ -43,6 +43,10 @@ __pycache__/
 /out/
 
 # production
+<<<<<<< HEAD
+======= 
+
+>>>>>>> 43e7d13be358481acc490d67ac6b0690ef42493c
 /dist
 
 # pm2

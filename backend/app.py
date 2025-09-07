@@ -14,7 +14,7 @@ from routes.org_routes import org_bp
 from routes.analytics_routes import analytics_bp
 from routes.trial_routes import trial_bp
 from errors.handlers import register_error_handlers
-
+import os
 # filepath: backend/app.py
 app = Flask(__name__, static_folder='build', static_url_path='/')
 
@@ -68,4 +68,6 @@ if __name__ == '__main__':
     else:
         print("❌ Database connection failed")
 
-    app.run(debug=True, port=5000, host='0.0.0.0')
+
+    port = int(os.environ.get("PORT", 8000))  # Railway gives PORT 
+    app.run(debug=False, host="0.0.0.0", port=port)
