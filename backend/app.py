@@ -31,7 +31,19 @@ app.register_blueprint(trial_bp)
 # Register error handlers
 register_error_handlers(app)
 
-@app.route('/')
+import os
+from flask import send_from_directory
+
+# Serve React frontend
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
+
+"""@app.route('/')
 def home():
     return jsonify({
         "message": "Virtual Patient Recruitment API",
@@ -40,7 +52,7 @@ def home():
         "models_count": len(MODELS),
         "timestamp": datetime.now().isoformat()
     })
-
+"""
 if __name__ == '__main__':
     print("🚀 Starting Virtual Patient Recruitment API...")
 

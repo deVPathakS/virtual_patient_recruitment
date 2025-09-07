@@ -90,11 +90,22 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-UPDATE users
+-- Insert default admin user 
+INSERT INTO users (username,  password_hash, role)
+VALUES (
+    'Admin',
+    
+    '$2b$12$x5ZomYth7ibki.55CWkGUuwMP/0yMLDtuyyj6W.7ku8IC/MPdiO.K',
+    'admin'
+);
+
+
+
+"""UPDATE users
 SET password_hash = '$2b$12$x5ZomYth7ibki.55CWkGUuwMP/0yMLDtuyyj6W.7ku8IC/MPdiO.K',
     role = 'admin'
 WHERE username = 'Admin';
-select * from users;
+select * from users;"""
 
 
 

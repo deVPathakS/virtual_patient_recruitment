@@ -7,8 +7,9 @@ DB_CONFIG = {
 }
 
 MODEL_PATHS = {
-    'hypertension': 'models/hypertension.pkl',
-    'arthritis': 'models/arthritis.pkl',
-    'migraine': 'models/migraine.pkl',
-    'phase1': 'models/phase1.pkl'
+ 'hypertension': 'ml_models/hypertension_model.pkl',
+    'arthritis': 'ml_models/arthritis_model.pkl',
+    'migraine': 'ml_models/migraine_model.pkl',
+    'phase1': 'ml_models/phase1_model.pkl'
 }
+
