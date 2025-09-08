@@ -1,38 +1,29 @@
-<<<<<<< HEAD
 # Example PostgreSQL config
-DB_CONFIG = {
-    'host': 'localhost',       # or your Railway/Postgres host
-    'port': 5432,
-    'user': 'vp_user',
-    'password': 'StrongPassword123',
-    'dbname': 'virtual_patient_recruitment'
-}
-=======
-# Example config file – make sure to adjust values
 import os
+import psycopg2
 from urllib.parse import urlparse
 
-# Railway injects MYSQL_URL variable
-mysql_url = os.getenv("MYSQL_URL", "")
+# Railway injects DATABASE_URL for Postgres
+db_url = os.getenv("DATABASE_URL")
 
-if mysql_url:
-    url = urlparse(mysql_url)
+if db_url:
+    url = urlparse(db_url)
     DB_CONFIG = {
         'host': url.hostname,
+        'port': url.port or 5432,
         'user': url.username,
         'password': url.password,
-        'database': url.path.lstrip('/'),
-        'port': url.port or 3306
+        'dbname': url.path.lstrip('/')
     }
 else:
     # fallback for local dev
     DB_CONFIG = {
         'host': 'localhost',
+        'port': 5432,
         'user': 'vp_user',
         'password': 'StrongPassword123',
-        'database': 'virtual_patient_recruitment'
+        'dbname': 'virtual_patient_recruitment'
     }
->>>>>>> 790c6e903cac243533a46f4f0437fb28159eccd3
 
 MODEL_PATHS = {
     'hypertension': 'ml_models/hypertension_model.pkl',
@@ -40,8 +31,3 @@ MODEL_PATHS = {
     'migraine': 'ml_models/migraine_model.pkl',
     'phase1': 'ml_models/phase1_model.pkl'
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 790c6e903cac243533a46f4f0437fb28159eccd3
